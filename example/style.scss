@@ -1,0 +1,19 @@
+body {
+    /* ✅ Baseline CSS properties */
+    color: red;
+    background-color: blue;
+    margin: 0;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+
+    /* ⚠️ Low baseline (warning) */
+    interpolate-size: allow-keywords;
+    overlay: auto;
+    reading-flow: flex-visual;
+    backdrop-filter: blur(2px);
+
+    /* ❌ Non-baseline (error) */
+    user-modify: initial;
+    -moz-float-edge: margin-box;
+    -webkit-text-security: none;
+}

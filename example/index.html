@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features Testing HTML</title>
+</head>
+
+<body>
+    <!-- ✅ Baseline -->
+
+    <!-- html.elements.a -->
+    <a href="https://example.com">Lorem ipsum</a>
+
+    <!-- html.elements.button -->
+    <button type="button">Lorem ipsum</button>
+
+    <!-- html.elements.input.type_text -->
+    <input type="text" placeholder="Digite algo" />
+
+    <!-- ⚠️ Low baseline -->
+
+    <!-- html.elements.iframe.allow.storage-access -->
+    <iframe src="about:blank" allow="storage-access"></iframe>
+
+    <!-- html.elements.img.fetchpriority -->
+    <img src="imagem.jpg" alt="Imagem Example" fetchpriority="high" />
+
+    <!-- html.global_attributes.contenteditable.plaintext-only -->
+    <div contenteditable="plaintext-only">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+    </div>
+
+    <!-- ❌ Non-baseline -->
+
+    <!-- html.elements.iframe.allow.accelerometer -->
+    <iframe src="about:blank" allow="accelerometer"></iframe>
+
+    <!-- html.global_attributes.autocorrect -->
+    <input type="text" autocorrect="off" />
+
+    <!-- html.elements.video.controlslist -->
+    <video controls controlslist="nodownload">
+        <source src="video.mp4" type="video/mp4" />
+    </video>
+</body>
+
+</html>

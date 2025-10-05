@@ -1,0 +1,93 @@
+/* 
+--------------------------------------
+    ✅ Baseline 
+--------------------------------------
+*/
+.test-baseline {
+    color: blue;
+    background: yellow;
+    width: 100px;
+    height: 100px;
+}
+
+/* 
+--------------------------------------
+    ⚠️ Low baseline (warning)
+--------------------------------------
+*/
+.test-low {
+    width: abs(50px - 100px);
+    height: sqrt(25px);
+    font-weight: exp(1);
+    font-size-adjust: 0.5;
+    backdrop-filter: blur(2px);
+    counter-set: myCounter 1;
+}
+
+.test-low input:autofill {
+    background-color: lightgreen;
+}
+
+.test-low :is(:dir(ltr), :dir(rtl)) {
+    border: 1px solid red;
+}
+
+.test-low .container:has(.child) {
+    outline: 2px dashed blue;
+}
+
+@counter-style myCounter {
+    system: numeric;
+    fallback: decimal;
+}
+
+@font-face {
+    font-family: "MyFont";
+    size-adjust: 1.2;
+    src: url("myfont.woff2") format("woff2");
+}
+
+@media (color-gamut: p3) {
+    body {
+        background: lightblue;
+    }
+}
+
+/* 
+--------------------------------------
+    ❌ Non-baseline (error) 
+--------------------------------------    
+*/
+.test-non {
+    background-clip: text;
+    clip: rect(0, 0, 0, 0);
+    container-type: scroll-state;
+}
+
+.test-non :is(.a .b) {
+    color: red;
+}
+
+.test-non li:nth-child(odd of .foo) {
+    color: purple;
+}
+
+.test-non div[popover-open] {
+    border: 2px solid black;
+}
+
+@media (update: sweep) {
+    body {
+        color: green;
+    }
+}
+
+@property --my-prop {
+    syntax: "<length>";
+    initial-value: 10px;
+    inherits: false;
+}
+
+@page {
+    size: A3;
+}

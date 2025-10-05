@@ -1,0 +1,37 @@
+{
+  "name": "weblinter",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "weblinter": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/cli.js",
+    "link": "npm link"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/commander": "^2.12.0",
+    "@types/globby": "^8.0.0",
+    "@types/node": "^20.10.5",
+    "@types/postcss-less": "^4.0.6",
+    "@types/postcss-safe-parser": "^5.0.4",
+    "tsx": "^4.20.6",
+    "typescript": "~5.3.3"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "figlet": "^1.9.3",
+    "globby": "^15.0.0",
+    "gradient-string": "^3.0.0",
+    "parse5": "^8.0.0",
+    "postcss": "^8.5.6",
+    "postcss-less": "^6.0.0",
+    "postcss-safe-parser": "^7.0.1",
+    "postcss-scss": "^4.0.9",
+    "web-features": "^3.3.0"
+  }
+}
