@@ -32,7 +32,7 @@ export async function saveFeaturesByPrefixSummary() {
         result.low = Array.from(new Set(result.low));
         result.non = Array.from(new Set(result.non));
 
-        const filePath = resolvePath('src', 'data', `features-${prefix.replace('.', '')}.json`);
+        const filePath = resolvePath('.weblinter_data', `features-${prefix.replace('.', '')}.json`);
         await writeJson(filePath, result);
     }
 }

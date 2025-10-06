@@ -4,7 +4,7 @@ import type { MatchResult } from '@/lib/types';
 type FeatureType = 'html' | 'css' | 'javascript';
 
 export async function matchFeatures(rawProperties: string[], type: FeatureType): Promise<MatchResult> {
-    const filePath = resolvePath('src', 'data', `features-${type}.json`);
+    const filePath = resolvePath('.weblinter_data', `features-${type}.json`);
     const { low = [], non = [] } = await readJson<{ low: string[]; non: string[] }>(filePath);
 
     const lowSet = new Set(low);

@@ -19,7 +19,7 @@ WebLinter saves developers from manually checking browser support on caniuse.com
 
 ## ⚙️ How It Works
 
-1. **Reads a required config file** (`.weblinterrc`) with the list of:
+1. **Reads a required config file** (`.weblinter`) with the list of:
 
    * File paths to scan (e.g., `src/`, `components/`)
    * Extensions to include (e.g., `css`, `html`)
@@ -45,7 +45,7 @@ WebLinter saves developers from manually checking browser support on caniuse.com
 
 ---
 
-## 📄 Configuration Example (`.weblinterrc`)
+## 📄 Configuration Example (`.weblinter`)
 
 ```json
 {
@@ -78,7 +78,7 @@ npx weblinter
 
 ## ✅ Current Scope (MVP)
 
-* [x] CLI with required `.weblinterrc` config
+* [x] CLI with required `.weblinter` config
 * [x] CSS feature detection via `postcss`
 * [x] Cross-referencing against `web-features` data
 * [x] Clear, readable CLI output

@@ -1,9 +1,17 @@
 import { readFile } from 'fs/promises';
+import { existsSync } from 'fs';
 import { resolve } from 'path';
 import type { WebLinterConfig } from '@/lib/types';
+import { init } from '@/init.js';
 
 export async function loadConfig(): Promise<WebLinterConfig> {
-    const configPath = resolve(process.cwd(), '.weblinterrc');
+    const configPath = resolve(process.cwd(), '.weblinter');
+
+    if (!existsSync(configPath)) {
+        console.log('⚠️ Config not found. Running init...');
+        init();
+    }
+
     const raw = await readFile(configPath, 'utf-8');
     const config = JSON.parse(raw) as WebLinterConfig;
 
