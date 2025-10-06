@@ -12,8 +12,9 @@ function printHeader() {
 
 export async function report(results: ReportItem[]) {
     printHeader();
+    const totalFilesWithReports = results.filter(x => x.lowBaseline.length > 0 || x.nonBaseline.length > 0).length;
 
-    if (results.length === 0) {
+    if (totalFilesWithReports === 0) {
         console.log(chalk.green('✅ No non-baseline features found.\n'));
         return;
     }
@@ -52,5 +53,5 @@ export async function report(results: ReportItem[]) {
         }
     }
 
-    console.log(`\n${chalk.red.bold(`✖ Total files with issues:`)} ${results.length}\n`);
+    console.log(`\n${chalk.red.bold(`✖ Total files with issues:`)} ${totalFilesWithReports}\n`);
 }
