@@ -1,6 +1,6 @@
 {
   "name": "weblinter",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A baseline-aware web feature linter CLI to detect non-baseline CSS and HTML usage",
   "keywords": [
     "web",
