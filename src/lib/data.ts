@@ -8,7 +8,11 @@ const PREFIXES = ['html.', 'css.', 'javascript.'];
 // save data
 export async function saveFeaturesByPrefixSummary() {
     for (const prefix of PREFIXES) {
-        const result = { low: [] as string[], non: [] as string[] };
+        const result = {
+            high: [] as string[],
+            low: [] as string[],
+            non: [] as string[]
+        };
 
         for (const feature of Object.values(rawFeatures)) {
             if (!('status' in feature) || !('compat_features' in feature)) continue;
@@ -22,13 +26,16 @@ export async function saveFeaturesByPrefixSummary() {
 
             const normalized = matching.map(f => normalizeFeature(prefix, f));
 
-            if (baseline === false) {
-                result.non.push(...normalized);
+            if (baseline === 'high') {
+                result.high.push(...normalized);
             } else if (baseline === 'low') {
                 result.low.push(...normalized);
+            } else if (baseline == false) {
+                result.non.push(...normalized);
             }
         }
 
+        result.high = Array.from(new Set(result.high));
         result.low = Array.from(new Set(result.low));
         result.non = Array.from(new Set(result.non));
 

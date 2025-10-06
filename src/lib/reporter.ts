@@ -22,16 +22,23 @@ export function report(results: ReportItem[]) {
     for (const result of results) {
         console.log(chalk.blueBright(`→ ${result.file}`));
 
-        if (result.warning.length > 0) {
+        if (result.lowBaseline.length > 0) {
             console.log(chalk.yellow('  Warnings (low baseline):'));
-            for (const feature of result.warning) {
+            for (const feature of result.lowBaseline) {
                 console.log(chalk.yellow(`    ⚠ ${feature}`));
             }
         }
 
-        if (result.error.length > 0) {
+        if (result.nonBaseline.length > 0) {
             console.log(chalk.red('  Errors (non-baseline):'));
-            for (const feature of result.error) {
+            for (const feature of result.nonBaseline) {
+                console.log(chalk.red(`    ✖ ${feature}`));
+            }
+        }
+
+        if (result.notFoundBaseline.length > 0) {
+            console.log(chalk.red('  Errors (not found):'));
+            for (const feature of result.notFoundBaseline) {
                 console.log(chalk.red(`    ✖ ${feature}`));
             }
         }

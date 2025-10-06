@@ -7,11 +7,10 @@ export interface WebLinterConfig {
 
 export interface MatchResult {
     lowBaseline: string[];
+    nonBaseline: string[];
     notFoundBaseline: string[];
 }
 
-export interface ReportItem {
+export interface ReportItem extends MatchResult {
     file: string;
-    warning: string[];
-    error: string[];
 }

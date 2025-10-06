@@ -12,7 +12,7 @@ import { report } from '@/lib/reporter.js';
 import { scanFiles } from '@/lib/scanner.js';
 import { shouldUpdateFeatureCache, updateFeatureCache } from '@/lib/cache.js';
 import { saveFeaturesByPrefixSummary } from '@/lib/data.js';
-import type { MatchResult } from '@/lib/types.js';
+import type { MatchResult, ReportItem } from '@/lib/types.js';
 import { assertInProjectRoot } from '@/lib/project.js';
 import { init } from '@/init.js'
 
@@ -53,7 +53,7 @@ program
                 files = await scanFiles(config);
             }
 
-            const results: { file: string; warning: string[]; error: string[] }[] = [];
+            const results: ReportItem[] = [];
 
             for (const file of files) {
                 const ext = path.extname(file).toLowerCase();
@@ -72,13 +72,14 @@ program
                 }
 
                 if (type) {
-                    const nonBaseline: MatchResult = await matchFeatures(props, type);
+                    const baselineResults: MatchResult = await matchFeatures(props, type);
 
-                    if (nonBaseline.lowBaseline.length > 0 || nonBaseline.notFoundBaseline.length > 0) {
+                    if (baselineResults.lowBaseline.length > 0 || baselineResults.notFoundBaseline.length > 0) {
                         results.push({
                             file,
-                            warning: nonBaseline.lowBaseline,
-                            error: nonBaseline.notFoundBaseline,
+                            lowBaseline: baselineResults.lowBaseline,
+                            nonBaseline: baselineResults.nonBaseline,
+                            notFoundBaseline: baselineResults.notFoundBaseline,
                         });
                     }
                 }
