@@ -1,6 +1,6 @@
 import { readFile, writeFile, access } from 'fs/promises';
-import { resolvePath } from '@/lib/file';
-import { loadConfig } from '@/lib/config';
+import { resolvePath } from '@/lib/file.js';
+import { loadConfig } from '@/lib/config.js';
 
 const HISTORY_FILE = resolvePath('src', 'data', '.cache');
 

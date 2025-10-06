@@ -1,4 +1,4 @@
-import { readJson, resolvePath } from '@/lib/file';
+import { readJson, resolvePath } from '@/lib/file.js';
 import type { MatchResult } from '@/lib/types';
 
 type FeatureType = 'html' | 'css' | 'javascript';

@@ -1,6 +1,6 @@
 import { features as rawFeatures } from 'web-features';
-import { normalizeFeature } from '@/lib/normalize';
-import { writeJson, resolvePath } from '@/lib/file';
+import { normalizeFeature } from '@/lib/normalize.js';
+import { writeJson, resolvePath } from '@/lib/file.js';
 
 // prefixes
 const PREFIXES = ['html.', 'css.', 'javascript.'];

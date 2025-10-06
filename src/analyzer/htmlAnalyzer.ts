@@ -1,6 +1,6 @@
 import { readFile } from 'fs/promises';
 import { parse } from 'parse5';
-import { analyzeEmbeddedCss } from '@/analyzer/cssAnalyzer';
+import { analyzeEmbeddedCss } from '@/analyzer/cssAnalyzer.js';
 
 export async function analyzeHtmlFile(filePath: string): Promise<string[]> {
     const content = await readFile(filePath, 'utf-8');

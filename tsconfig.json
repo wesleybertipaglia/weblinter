@@ -20,12 +20,16 @@
         "./src/*"
       ]
     },
-    "noEmit": true
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "removeComments": false
   },
   "include": [
     "src"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "**/*.test.ts"
   ]
 }

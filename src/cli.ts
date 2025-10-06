@@ -13,7 +13,7 @@ import { scanFiles } from '@/lib/scanner.js';
 import { shouldUpdateFeatureCache, updateFeatureCache } from '@/lib/cache.js';
 import { saveFeaturesByPrefixSummary } from '@/lib/data.js';
 import type { MatchResult } from '@/lib/types.js';
-import { assertInProjectRoot } from '@/lib/project';
+import { assertInProjectRoot } from '@/lib/project.js';
 
 const program = new Command();
 
