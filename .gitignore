@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 # Caching
-src/data/**.json
-src/data/.cache
+.weblinter_data

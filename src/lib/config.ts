@@ -8,7 +8,7 @@ export async function loadConfig(): Promise<WebLinterConfig> {
     const configPath = resolve(process.cwd(), '.weblinter');
 
     if (!existsSync(configPath)) {
-        console.log('⚠️ .weblinter config file not found. Creating one with `init`...');
+        console.log('⚠️ Config not found. Running init...');
         init();
     }
 

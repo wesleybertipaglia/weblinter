@@ -1,16 +1,15 @@
+
 {
-  "include": [
-    "src"
-  ],
-  "extensions": [
-    "css",
-    "scss",
-    "less",
-    "html"
-  ],
-  "exclude": [
-    "**/node_modules/**",
-    "**/*.json"
-  ],
-  "cacheDays": 10
+    "include": [
+        "src"
+    ],
+    "extensions": [
+        "css",
+        "html"
+    ],
+    "exclude": [
+        "**/node_modules/**",
+        "**/*.json"
+    ],
+    "cacheDays": 10
 }
