@@ -35,9 +35,20 @@ It’s powered by [web-features](https://github.com/web-platform-dx/web-features
 * **Helpful Warnings**
   CLI output includes **line numbers**, **context**, and **baseline status** — with both warnings and errors.
 
-## ⚙️ Configuration
+## ⚙️ Configuration & Initialization
 
-Create a `.weblinter` file in your project root:
+The first time you run:
+
+```bash
+npx weblinter
+```
+
+**WebLinter will automatically:**
+
+* Create a `.weblinter` config file in your project root if it doesn't exist yet.
+* Generate and cache feature usage data in a `.weblinter_data` folder (ignored by Git).
+
+You can customize `.weblinter` like this:
 
 ```json
 {
@@ -50,18 +61,10 @@ Create a `.weblinter` file in your project root:
 
 > `cacheDays`: Number of days to cache parsed files to speed up repeat runs.
 
-## 🚀 Installation
-
-Install globally:
+If you want, you can also explicitly create the config file anytime by running:
 
 ```bash
-npm install -g weblinter
-```
-
-Or use directly with `npx`:
-
-```bash
-npx weblinter
+npx weblinter init
 ```
 
 ## 🧪 Example Output
