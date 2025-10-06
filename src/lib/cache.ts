@@ -2,14 +2,14 @@ import { readFile, writeFile, access } from 'fs/promises';
 import { resolvePath } from '@/lib/file.js';
 import { loadConfig } from '@/lib/config.js';
 
-const HISTORY_FILE = resolvePath('src', 'data', '.cache');
+const HISTORY_FILE = resolvePath('.weblinter', '.cache');
 
 async function requiredDataFilesExist(): Promise<boolean> {
     const types = ['html', 'css', 'javascript'];
     try {
         await Promise.all(
             types.map(type =>
-                access(resolvePath('src', 'data', `features-${type}.json`))
+                access(resolvePath('.weblinter', `features-${type}.json`))
             )
         );
         return true;

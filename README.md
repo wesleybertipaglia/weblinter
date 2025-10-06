@@ -37,7 +37,7 @@ It’s powered by [web-features](https://github.com/web-platform-dx/web-features
 
 ## ⚙️ Configuration
 
-Create a `.weblinterrc` file in your project root:
+Create a `.weblinter` file in your project root:
 
 ```json
 {

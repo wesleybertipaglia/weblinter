@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import type { WebLinterConfig } from '@/lib/types';
 
 export async function loadConfig(): Promise<WebLinterConfig> {
-    const configPath = resolve(process.cwd(), '.weblinterrc');
+    const configPath = resolve(process.cwd(), '.weblinter');
     const raw = await readFile(configPath, 'utf-8');
     const config = JSON.parse(raw) as WebLinterConfig;
 
