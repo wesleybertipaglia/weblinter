@@ -14,6 +14,7 @@ import { shouldUpdateFeatureCache, updateFeatureCache } from '@/lib/cache.js';
 import { saveFeaturesByPrefixSummary } from '@/lib/data.js';
 import type { MatchResult } from '@/lib/types.js';
 import { assertInProjectRoot } from '@/lib/project.js';
+import { init } from '@/init.js'
 
 const program = new Command();
 
@@ -88,6 +89,13 @@ program
             console.error(err instanceof Error ? err.message : err);
             process.exit(1);
         }
+    });
+
+program
+    .command('init')
+    .description('Create a .weblinter config file in the project root')
+    .action(() => {
+        init()
     });
 
 program.parse();
