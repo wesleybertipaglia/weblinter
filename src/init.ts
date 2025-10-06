@@ -14,7 +14,8 @@ const configTemplate = `
         "**/node_modules/**",
         "**/*.json"
     ],
-    "cacheDays": 10
+    "cacheDays": 10,
+    "showNotFoundResults": false
 }
 `;
 

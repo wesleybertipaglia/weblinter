@@ -19,6 +19,7 @@ export async function loadConfig(): Promise<WebLinterConfig> {
     config.extensions = config.extensions ?? ['html', 'css', 'js'];
     config.exclude = config.exclude ?? ['**/node_modules/**', '**/*.json'];
     config.cacheDays = config.cacheDays ?? 10;
+    config.showNotFoundResults = config.showNotFoundResults ?? false;
 
     return config;
 }

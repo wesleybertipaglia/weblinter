@@ -52,14 +52,13 @@ You can customize `.weblinter` like this:
 
 ```json
 {
-  "paths": ["src", "components"],
-  "extensions": ["css", "html"],
-  "exclude": ["node_modules", "**/*.json", "dist"],
-  "cacheDays": 10
+  "paths": ["src", "components"],                     // Folders to include for linting
+  "extensions": ["css", "html"],                      // File extensions to lint
+  "exclude": ["node_modules", "**/*.json", "dist"],   // Paths or patterns to exclude
+  "cacheDays": 10,                                    // Number of days to cache parsed files
+  "showNotFoundResults": false                        // Show results for missing files (set to true to debug missing paths)
 }
 ```
-
-> `cacheDays`: Number of days to cache parsed files to speed up repeat runs.
 
 If you want, you can also explicitly create the config file anytime by running:
 

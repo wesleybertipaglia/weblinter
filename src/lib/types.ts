@@ -3,6 +3,7 @@ export interface WebLinterConfig {
     extensions?: string[];
     exclude?: string[];
     cacheDays?: number;
+    showNotFoundResults?: boolean;
 }
 
 export interface MatchResult {

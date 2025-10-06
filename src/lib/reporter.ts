@@ -2,6 +2,7 @@ import figlet from 'figlet';
 import chalk from 'chalk';
 import { pastel } from 'gradient-string';
 import type { ReportItem } from '@/lib/types';
+import { loadConfig } from '@/lib/config.js';
 
 function printHeader() {
     const title = figlet.textSync('WebLinter ', { font: 'Slant' });
@@ -9,7 +10,7 @@ function printHeader() {
     console.log(chalk.magentaBright.bold('🔍 Baseline-Aware Feature Checker\n'));
 }
 
-export function report(results: ReportItem[]) {
+export async function report(results: ReportItem[]) {
     printHeader();
 
     if (results.length === 0) {
@@ -18,6 +19,9 @@ export function report(results: ReportItem[]) {
     }
 
     console.log(chalk.yellow('⚠️  Found non-baseline features:\n'));
+
+    const config = await loadConfig();
+    const showNotFoundResults = config.showNotFoundResults ?? false;
 
     for (const result of results) {
         console.log(chalk.blueBright(`→ ${result.file}`));
@@ -36,7 +40,7 @@ export function report(results: ReportItem[]) {
             }
         }
 
-        if (result.notFoundBaseline.length > 0) {
+        if (showNotFoundResults && result.notFoundBaseline.length > 0) {
             console.log(chalk.red('  Errors (not found):'));
             for (const feature of result.notFoundBaseline) {
                 console.log(chalk.red(`    ✖ ${feature}`));
