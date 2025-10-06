@@ -104,6 +104,7 @@ export async function analyzeCssFile(filePath: string): Promise<string[]> {
 export async function analyzeEmbeddedCss(htmlText: string): Promise<string[]> {
     const features = new Set<string>();
     const ast = parse(htmlText) as any;
+    const analysisPromises: Promise<void>[] = [];
 
     function walk(node: any) {
         if (!node) return;
@@ -111,7 +112,10 @@ export async function analyzeEmbeddedCss(htmlText: string): Promise<string[]> {
         if (node.tagName === 'style' && node.childNodes) {
             for (const child of node.childNodes) {
                 if (child.nodeName === '#text') {
-                    analyzeCssContent(child.value).then(f => f.forEach(feat => features.add(feat)));
+                    const promise = analyzeCssContent(child.value).then(f =>
+                        f.forEach(feat => features.add(feat))
+                    );
+                    analysisPromises.push(promise);
                 }
             }
         }
@@ -119,19 +123,23 @@ export async function analyzeEmbeddedCss(htmlText: string): Promise<string[]> {
         if (node.attrs) {
             for (const attr of node.attrs) {
                 if (attr.name === 'style' && attr.value) {
-                    analyzeCssContent(attr.value).then(f => f.forEach(feat => features.add(feat)));
+                    const promise = analyzeCssContent(attr.value).then(f =>
+                        f.forEach(feat => features.add(feat))
+                    );
+                    analysisPromises.push(promise);
                 }
             }
         }
 
         if (node.childNodes) {
-            for (const child of node.childNodes) walk(child);
+            for (const child of node.childNodes) {
+                walk(child);
+            }
         }
     }
 
     walk(ast);
 
-    await new Promise(r => setTimeout(r, 10));
-
+    await Promise.all(analysisPromises);
     return [...features];
 }

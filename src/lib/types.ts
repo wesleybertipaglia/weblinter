@@ -15,3 +15,5 @@ export interface MatchResult {
 export interface ReportItem extends MatchResult {
     file: string;
 }
+
+export type FeatureType = 'html' | 'css' | 'javascript';

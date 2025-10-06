@@ -12,7 +12,7 @@ import { report } from '@/lib/reporter.js';
 import { scanFiles } from '@/lib/scanner.js';
 import { shouldUpdateFeatureCache, updateFeatureCache } from '@/lib/cache.js';
 import { saveFeaturesByPrefixSummary } from '@/lib/data.js';
-import type { MatchResult, ReportItem } from '@/lib/types.js';
+import type { FeatureType, MatchResult, ReportItem } from '@/lib/types.js';
 import { assertInProjectRoot } from '@/lib/project.js';
 import { init } from '@/init.js'
 
@@ -58,21 +58,21 @@ program
             for (const file of files) {
                 const ext = path.extname(file).toLowerCase();
                 let props: string[] = [];
-                let type: 'html' | 'css' | 'js' | null = null;
+                let types: FeatureType[] = [];
 
                 if (['.css', '.scss', '.less', '.sass'].includes(ext)) {
                     props = await analyzeCssFile(file);
-                    type = 'css';
+                    types = ['css'];
                 } else if (ext === '.html') {
                     props = await analyzeHtmlFile(file);
-                    type = 'html';
+                    types = ['html', 'css'];
                 } else {
                     console.warn(`⚠️ Skipping unsupported file type: ${file}`);
                     continue;
                 }
 
-                if (type) {
-                    const baselineResults: MatchResult = await matchFeatures(props, type);
+                if (types && types.length > 0) {
+                    const baselineResults: MatchResult = await matchFeatures(props, types);
 
                     if (baselineResults.lowBaseline.length > 0 || baselineResults.notFoundBaseline.length > 0) {
                         results.push({
